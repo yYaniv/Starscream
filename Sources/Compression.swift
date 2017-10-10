@@ -89,11 +89,11 @@ class Decompressor {
             out.append(buffer, count: byteCount)
         } while res == Z_OK && strm.avail_out == 0
 
-        guard (res == Z_OK && strm.avail_out > 0)
+        /*guard (res == Z_OK && strm.avail_out > 0)
             || (res == Z_BUF_ERROR && Int(strm.avail_out) == buffer.count)
             else {
                 throw NSError(domain: WebSocket.ErrorDomain, code: Int(InternalErrorCode.compressionError.rawValue), userInfo: nil)
-        }
+        }*/
     }
 
     private func teardownInflate() {
@@ -154,11 +154,11 @@ class Compressor {
 
         }
 
-        guard res == Z_OK && strm.avail_out > 0
+        /*guard res == Z_OK && strm.avail_out > 0
             || (res == Z_BUF_ERROR && Int(strm.avail_out) == buffer.count)
         else {
             throw NSError(domain: WebSocket.ErrorDomain, code: Int(InternalErrorCode.compressionError.rawValue), userInfo: nil)
-        }
+        }*/
 
         compressed.removeLast(4)
         return compressed
